@@ -5,7 +5,7 @@ import os
 # Programa principal
 def main():
     while True:
-        print("----------------------------------------------")
+        print("\n----------------------------------------------")
         print("\033[31mBienvenido al descargador de videos de YouTube\033[0m")
         print("----------------------------------------------")
 
@@ -24,15 +24,19 @@ def main():
             print("\nSaliendo del programa...")
             break
         else:
-            print("Opción no válida. Intenta de nuevo.")
+            print("\nOpción no válida. Intenta de nuevo.\n")
 
+# YouTube a MP4
 def youtube_mp4():
     url = input("\nIngresa la URL del video de YouTube: ")
+    
     downloads_folder = os.path.expanduser("~/Descargas")
+
     yt = YouTube(url)
-    stream = yt.streams.filter(file_extension="mp4").get_highest_resolution()
-    stream.download(output_path=downloads_folder)
+    video = yt.streams.filter(adaptive=True).filter(mime_type='video/webm').first()
+    video.download(output_path=downloads_folder)
     print(f"\nVideo descargado exitosamente en: {downloads_folder}")
 
+# Ejecutador
 if __name__ == "__main__":
     main()
