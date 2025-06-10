@@ -33,7 +33,7 @@ def youtube_mp4():
     downloads_folder = os.path.expanduser("~/Descargas")
 
     yt = YouTube(url)
-    video = yt.streams.filter(adaptive=True).filter(mime_type='video/webm').first()
+    video = yt.streams.filter(adaptive=True).filter(mime_type='video/mp4').first()
     video.download(output_path=downloads_folder)
     print(f"\nVideo descargado exitosamente en: {downloads_folder}")
 
